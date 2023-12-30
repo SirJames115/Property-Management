@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv'
 // import connectDB from "./config/db.js";
 dotenv.config()
+import userRouter from './routes/userRoute.js'
 
 import pkg from "colors";
 const { Color } = pkg;
@@ -18,3 +19,5 @@ app.listen(port, () => {
     `App running and listening for API calls on port: ${port}`.blue,
   );
 });
+
+app.use('/api/user', userRouter)
