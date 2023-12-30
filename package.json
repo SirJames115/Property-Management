@@ -2,9 +2,11 @@
   "name": "property-management",
   "version": "1.0.0",
   "description": "App For Property Management. Using the MERN Stack",
-  "main": "index.js",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js"
   },
   "keywords": [],
   "author": "",
