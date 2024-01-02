@@ -67,7 +67,7 @@ function SignUp() {
         />
         <input
           type="password"
-          placeholder="Username"
+          placeholder="Password"
           className="border p-3 rounded-lg"
           id="password"
           onChange={handleChange}
@@ -81,7 +81,7 @@ function SignUp() {
       <div className="gap-2">
         <p>
           Have an account?{" "}
-          <Link className="text-blue-700 underline text-center" to="/sign-in">
+          <Link className="text-blue-700 text-center" to="/sign-in">
             sign in
           </Link>
         </p>
