@@ -6,12 +6,15 @@ import SignUp from "./pages/SignUp";
 import About from "./pages/About";
 import Profile from "./pages/Profile";
 import Header from "./component/Header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-      <Header/>
+        <Header />
+        <ToastContainer />
         <Routes>
           <Route path="/" index element={<Home />} />
           <Route path="/sign-in" element={<SignIn />} />
