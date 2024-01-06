@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import OAuth from "../component/OAuth";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -34,9 +35,9 @@ function SignUp() {
         return;
       }
       setLoading(false);
-      setError(null)
-      navigate('/sign-in')
-      toast.success(data.message)
+      setError(null);
+      navigate("/sign-in");
+      toast.success(data.message);
       console.log(data);
     } catch (error) {
       setLoading(false);
@@ -46,9 +47,7 @@ function SignUp() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <p className="hidden">
-      {toast.error(error)}
-      </p>
+      <p className="hidden">{toast.error(error)}</p>
       <h1 className="text-center text-3xl font-semibold my-7">Signup</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
         <input
@@ -77,6 +76,7 @@ function SignUp() {
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? "Loading..." : "Sign Up"}
         </button>
+        <OAuth />
       </form>
       <div className="gap-2">
         <p>
@@ -85,7 +85,7 @@ function SignUp() {
             sign in
           </Link>
         </p>
-      </div>    
+      </div>
     </div>
   );
 }
