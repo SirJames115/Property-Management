@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 import userRouter from "./routes/userRoute.js";
 import authRouth from "./routes/authRouth.js";
@@ -20,6 +21,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.json({ extended: true }));
+
+app.use(cookieParser());
 
 app.listen(port, () => {
   console.log(`App running and listening for API calls on port: ${port}`.blue);
