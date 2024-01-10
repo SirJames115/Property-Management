@@ -131,7 +131,7 @@ function Profile() {
       }
       dispatch(signOutUserSuccess(data));
     } catch (error) {
-      dispatch(signOutUserFailure9(data.message));
+      dispatch(signOutUserFailure(data.message));
     }
   };
 
