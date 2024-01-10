@@ -16,6 +16,9 @@ import {
   deleteUserStart,
   deleteUserFailure,
   deleteUserSuccess,
+  signOutUserStart,
+  signOutUserFailure,
+  signOutUserSuccess,
 } from "../redux/user/userSlice";
 // import { Toast } from "react-toastify/dist/components";
 
@@ -105,8 +108,8 @@ function Profile() {
         method: "DELETE",
       });
       const data = await res.json();
-      // console.log("Res: ", res);
-      // console.log("Data: ", data);
+      console.log("Res: ", res);
+      console.log("Data: ", data);
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
         return;
@@ -115,6 +118,19 @@ function Profile() {
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch("/api/auth/signout");
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(signOutUserFailure(data.message));
+        return;
+      }
+      dispatch(signOutUserSuccess(data));
+    } catch (error) {}
   };
 
   return (
@@ -185,7 +201,9 @@ function Profile() {
           className="text-red-700 cursor-pointer">
           Delete Account
         </span>
-        <span className="text-red-700 cursor-pointer">Sign out</span>
+        <span onClick={handleSignOut} className="text-red-700 cursor-pointer">
+          Sign out
+        </span>
       </div>
       <p hidden>{error ? toast.error(error) : ""}</p>
       <p hidden>{updateSuccess ? toast.success("Updated successfully") : ""}</p>
