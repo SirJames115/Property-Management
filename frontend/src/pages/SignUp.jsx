@@ -32,13 +32,15 @@ function SignUp() {
       if (data.success === false) {
         setLoading(false);
         setError(data.message);
+        toast.error(data.message);
+        // toast.error("Or check your internet connection");
         return;
       }
       setLoading(false);
       setError(null);
       navigate("/sign-in");
       toast.success(data.message);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -47,11 +49,11 @@ function SignUp() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <p className="hidden">{toast.error(error)}</p>
       <h1 className="text-center text-3xl font-semibold my-7">Signup</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
         <input
           type="text"
+          // value={formData.id}
           placeholder="Username"
           className="border p-3 rounded-lg"
           id="username"
@@ -59,6 +61,7 @@ function SignUp() {
         />
         <input
           type="text"
+          // value={formData.id}
           placeholder="Email"
           className="border p-3 rounded-lg"
           id="email"
@@ -66,6 +69,7 @@ function SignUp() {
         />
         <input
           type="password"
+          // value={formData.id}
           placeholder="Password"
           className="border p-3 rounded-lg"
           id="password"

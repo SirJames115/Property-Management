@@ -29,6 +29,10 @@ function Profile() {
 
   const { currentUser, loading, error } = useSelector((state) => state.user);
 
+  // console.log(currentUser.email);
+  // console.log(currentUser.username);
+  // console.log(currentUser);
+
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
@@ -37,9 +41,9 @@ function Profile() {
 
   // Console.logs
   // console.log(file);
-  console.log(filePerc);
-  console.log(fileUploadError);
-  console.log(formData);
+  // console.log(filePerc);
+  // console.log(fileUploadError);
+  // console.log(formData);
 
   useEffect(() => {
     if (file) {
@@ -89,15 +93,18 @@ function Profile() {
 
       if (data.success === false) {
         dispatch(updateUserFailure(data.message));
+        toast.error(data.message);
         return;
       }
 
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
+      toast.success("Profile updated successfully");
       //To be removed at the end of the day
       console.log(loading);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
+      toast.error(error);
     }
   };
 
@@ -150,7 +157,7 @@ function Profile() {
         />
         <img
           onClick={() => fileRef.current.click()}
-          src={formData.avatar || currentUser.avatar}
+          src={formData.avatar || currentUser.avatar || currentUser.rest.avatar}
           alt="profile-image"
           className="rounded-full h-24 w-24 self-center mt-2 object-cover cursor-pointer"
         />
@@ -162,15 +169,16 @@ function Profile() {
           ) : filePerc > 0 && filePerc < 100 ? (
             <span className="text-slate-700">{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
-            toast.success("Image succefully uploaded")
+            <p hidden className="text-center ">
+              Updated Successfully
+            </p>
           ) : (
-            // <span className="text-green-700">Image succefully uploaded</span>
             ""
           )}
         </p>
         <input
           type="text"
-          defaultValue={currentUser.username}
+          defaultValue={currentUser.username || currentUser.rest.username}
           onChange={handleChange}
           className="border p-3 rounded-lg"
           placeholder="Username"
@@ -178,7 +186,7 @@ function Profile() {
         />
         <input
           type="email"
-          defaultValue={currentUser.email}
+          defaultValue={currentUser.email || currentUser.rest.email}
           onChange={handleChange}
           className="border p-3 rounded-lg"
           placeholder="Email"
@@ -207,8 +215,8 @@ function Profile() {
           Sign out
         </span>
       </div>
-      <p hidden>{error ? toast.error(error) : ""}</p>
-      <p hidden>{updateSuccess ? toast.success("Updated successfully") : ""}</p>
+      {/* <p hidden>{error ?  : ""}</p> */}
+      {/* <p hidden>{updateSuccess ?  : ""}</p> */}
     </div>
   );
 }

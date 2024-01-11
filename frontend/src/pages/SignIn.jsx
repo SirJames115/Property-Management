@@ -39,20 +39,22 @@ function SignIn() {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data.message));
+        toast.error("Please check your internet connection ");
         return;
       }
       dispatch(signInSuccess(data));
       navigate("/");
       toast.success(data.message);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       dispatch(signInFailure(error.message));
+      toast.error(error.message);
     }
   };
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <p className="hidden">{toast.error(error)}</p>
+      {/* <p className="hidden">{toast.error(error)}</p> */}
       <h1 className="text-center text-3xl font-semibold my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
         <input

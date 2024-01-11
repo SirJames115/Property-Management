@@ -40,7 +40,7 @@ export default function OAuth() {
       type="button"
       onClick={handleGoogleClick}
       className="bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95">
-      OAuth
+      Continue With Google
     </button>
   );
 }
