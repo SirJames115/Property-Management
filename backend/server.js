@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 import userRouter from "./routes/userRoute.js";
 import authRouth from "./routes/authRouth.js";
+import listingRoute from "./routes/listingRoute.js";
 
 import pkg from "colors";
 const { Color } = pkg;
@@ -30,6 +31,7 @@ app.listen(port, () => {
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouth);
+app.use("/api/listing", listingRoute);
 
 // Error handler
 app.use((err, req, res, next) => {
