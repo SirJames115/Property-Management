@@ -146,7 +146,7 @@ export const CreateListing = () => {
                 <span className="">Baths</span>
               </div>
               <div className="flex gap-4">
-                <div className="flex gap-1 items-center">
+                <div className="flex gap-1ntend items-center">
                   <input
                     type="number"
                     id="regularPrice"
