@@ -29,7 +29,7 @@ export const deleteListing = asyncHandler(async (req, res, next) => {
   }
 
   try {
-    await listing.findByIdAndDelete(req.params.id);
+    await Listing.findByIdAndDelete(req.params.id);
     res.status(200).json("Listing has been deleted!");
   } catch (error) {
     next(error);

@@ -161,6 +161,25 @@ function Profile() {
     }
   };
 
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        toast.error(data.message);
+        return;
+      }
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId),
+      );
+      toast.success("Deleted successfully!");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7 uppercase">
@@ -267,7 +286,9 @@ function Profile() {
               </Link>
 
               <div className="flex flex-col">
-                <button className="text-red-700 uppercase border p-1 rounded hover:bg-slate-200 hover:shadow-md delay-100">
+                <button
+                  onClick={() => handleListingDelete(listing._id)}
+                  className="text-red-700 uppercase border p-1 rounded hover:bg-slate-200 hover:shadow-md delay-100">
                   Delete
                 </button>
                 <button className="text-green-700 uppercase border p-1 rounded hover:bg-slate-200 hover:shadow-md delay-100">
