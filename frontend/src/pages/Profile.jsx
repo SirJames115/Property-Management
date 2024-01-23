@@ -291,9 +291,12 @@ function Profile() {
                   className="text-red-700 uppercase border p-1 rounded hover:bg-slate-200 hover:shadow-md delay-100">
                   Delete
                 </button>
+                <Link to={`/update-listing/${listing._id}`}>
+
                 <button className="text-green-700 uppercase border p-1 rounded hover:bg-slate-200 hover:shadow-md delay-100">
                   Edit
                 </button>
+                </Link>
               </div>
             </div>
           ))}
