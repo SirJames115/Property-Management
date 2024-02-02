@@ -5,14 +5,20 @@ import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
 import { MdLocationOn } from "react-icons/md";
-import { FaBath, FaBed, FaChair, FaParking } from "react-icons/fa";
+import { FaBath, FaBed, FaChair, FaParking, FaShare } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import Contact from "../component/Contact";
 
 function listingDetail() {
+  const { currentUser } = useSelector((state) => state.user);
   SwiperCore.use([Navigation]);
 
   const [listing, setListing] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [contact, setContact] = useState(false);
 
   const params = useParams();
 
@@ -61,7 +67,19 @@ function listingDetail() {
                     style={{
                       background: `url(${url}) center no-repeat`,
                       backgroundSize: "cover",
-                    }}></div>
+                    }}>
+                    <FaShare
+                      className="text-slate-100 text-3xl bg-black rounded-lg w-8 h-8 p-1 absolute top-12 left-12 shadow-lg hover:shadow-2xl cursor-pointer"
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        setCopied(true);
+                        setTimeout(() => {
+                          setCopied(false);
+                          toast.success("Link copied!");
+                        }, 500);
+                      }}
+                    />
+                  </div>
                 </SwiperSlide>
               ))
             ) : (
@@ -120,6 +138,15 @@ function listingDetail() {
             {listing.furnished ? "Furnished" : "Not furnished"}
           </li>
         </ul>
+        {currentUser && listing.userRef !== currentUser._id && !contact && (
+          <button
+            type="button"
+            onClick={() => setContact(true)}
+            className="bg-slate-700 w-full text-white uppercase rounded-lg hover:opacity-95 p-3">
+            Contact Landlord
+          </button>
+        )}
+        {contact && <Contact listing={listing} />}
       </div>
     </main>
   );
