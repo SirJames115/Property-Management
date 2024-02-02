@@ -11,7 +11,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CreateListing } from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
-import Listing from "./pages/Listing";
+import ListingDetail from "./pages/listingDetail";
+// import Listing from "./pages/Listing";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/about" element={<About />} />
-          <Route path="/listing/:listingId" element={<Listing />} />
+          <Route path="/listing/:listingId" element={<ListingDetail/>}/>
+          {/* <Route path="/listing/:listingId" element={<Listing />} /> */}
           {/* Private Routes */}
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
