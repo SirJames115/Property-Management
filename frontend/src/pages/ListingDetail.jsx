@@ -90,7 +90,7 @@ function listingDetail() {
           </Swiper>
         </div>
       )}
-      <div className="px-2">
+      <div className="flex flex-col px-2 max-w-4xl mx-auto p-3 my-7 gap-2">
         <p className="font-semibold">
           {listing.name}
           {" - "}
