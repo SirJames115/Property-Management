@@ -1,8 +1,8 @@
 {
   "name": "property-management",
   "version": "1.0.0",
-  "description": "App For Property Management. Using the MERN Stack",
   "type": "module",
+  "description": "App For Property Management. Using the MERN Stack",
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
