@@ -109,7 +109,7 @@ export const searchListings = asyncHandler(async (req, res, next) => {
       .limit(limit)
       .skip(startIndex);
 
-    return res.status(200).json(listings );
+    return res.status(200).json(listings);
   } catch (error) {
     next(error);
   }
