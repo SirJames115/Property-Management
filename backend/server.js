@@ -7,6 +7,7 @@ dotenv.config();
 import userRouter from "./routes/userRoute.js";
 import authRouth from "./routes/authRouth.js";
 import listingRoute from "./routes/listingRoute.js";
+import path from "path";
 
 import pkg from "colors";
 const { Color } = pkg;
@@ -17,6 +18,8 @@ const app = express();
 
 // Will uncomment the DB connection line when I need it, because am not always connected o the internet
 connectDB();
+
+const __dirname = path.resolve();
 
 app.use(cors());
 
@@ -32,6 +35,12 @@ app.listen(port, () => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouth);
 app.use("/api/listing", listingRoute);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get('*', (req,res,next)=>{
+  res.send(path.join(__dirname, 'frontend','dist','index.html'))
+})
 
 // Error handler
 app.use((err, req, res, next) => {
