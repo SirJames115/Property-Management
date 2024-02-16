@@ -154,6 +154,7 @@ export const CreateListing = () => {
         },
         body: JSON.stringify({ ...formData, userRef: currentUser._id }),
       });
+
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
